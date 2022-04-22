@@ -1,9 +1,7 @@
 import './style.css';
-import {header} from './header';
+import {loadPage} from './load-page';
+import {settings} from './settings';
 
-//Get elements
-let body = document.querySelector('body');
-let main = document.querySelector('main');
 
-body.prepend(header());
+loadPage();
 

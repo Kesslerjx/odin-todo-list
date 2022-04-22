@@ -1,5 +1,3 @@
-
-//Import icons
 import SettingsIcon from './icons/settings.svg';
 import AddIcon from './icons/add.svg';
 
@@ -16,18 +14,22 @@ const header = () => {
     title.textContent = "ToDo";
     addButton.src = AddIcon;
 
+    //Set IDs
+    settingsButton.id = 'settings-button';
+    addButton.id = 'add-button';
+
     //Add classes
     title.classList.add('header-title');
-
-    //Add listeners
-    settingsButton.addEventListener('click', settingsPressed);
-    addButton.addEventListener('click', addPressed);
 
     //Add elements to header
     header.append(settingsButton, title, addButton);
 
     return header;
 };
+
+export {header};
+
+/*
 
 function settingsPressed(event) {
     //Animate icon when pressed
@@ -39,6 +41,7 @@ function addPressed(event) {
     animateAddIcon(event);
 }
 
+//Rotates the icon
 function animateSettingsIcon(event) {
     //Create animation keyframes and timing
     const spin = {transform: 'rotate(360deg)'};
@@ -48,6 +51,7 @@ function animateSettingsIcon(event) {
     event.target.animate(spin, time);
 }
 
+//Scales the icon down
 function animateAddIcon(event) {
     const scale = {transform: 'scale(0.75)'};
     const time  = {duration: 100, iterations: 1};
@@ -55,4 +59,4 @@ function animateAddIcon(event) {
     event.target.animate(scale, time);
 }
 
-export {header};
+*/
