@@ -40,6 +40,9 @@ function setMode() {
     if(getMode() === true) {
         document.querySelector('body').classList.add('dark-mode');
         console.log('Dark mode enabled');
+    } else {
+        document.querySelector('body').classList.remove('dark-mode');
+        console.log('Dark mode disabled');
     }
 }
 

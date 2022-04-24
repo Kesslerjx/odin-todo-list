@@ -3,6 +3,10 @@ const Keys = {
     TodoList: 'todo list'
 }
 
+function clearData() {
+    window.localStorage.clear();
+}
+
 //Returns if dark mode is set or not
 function getMode() {
 
@@ -14,4 +18,9 @@ function getMode() {
     return JSON.parse(window.localStorage.getItem(Keys.DarkMode));
 }
 
-export {getMode};
+//Saves the theme mode
+function saveMode(mode) {
+    window.localStorage.setItem(Keys.DarkMode, mode);
+}
+
+export {getMode, saveMode, clearData};
