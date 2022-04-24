@@ -1,5 +1,7 @@
+import { home } from './home';
 import {settings} from './settings';
 import {addItemPage} from './add-item-page';
+import { getMode } from './storage-handler';
 
 //// PUBLIC FUNCTIONS ////
 
@@ -29,6 +31,18 @@ function showAddItemPage() {
     getMain().appendChild(addItemPage());
 }
 
+function showHomePage() {
+    clearPage();
+    getMain().appendChild(home());
+}
+
+function setMode() {
+    if(getMode() === true) {
+        document.querySelector('body').classList.add('dark-mode');
+        console.log('Dark mode enabled');
+    }
+}
+
 //// PUBLIC FUNCTIONS ////
 
 //// PRIVATE FUNCTIONS ////
@@ -46,4 +60,4 @@ function getMain() {
 
 //// PRIVATE FUNCTIONS ////
 
-export {rotateElement, scaleElement, showSettingsPage, showAddItemPage};
+export {rotateElement, scaleElement, showSettingsPage, showAddItemPage, showHomePage, setMode};

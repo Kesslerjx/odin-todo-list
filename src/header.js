@@ -1,6 +1,6 @@
 import SettingsIcon from './icons/settings.svg';
 import AddIcon from './icons/add.svg';
-import {rotateElement, scaleElement, showSettingsPage, showAddItemPage} from './page-handler';
+import {rotateElement, scaleElement, showSettingsPage, showAddItemPage, showHomePage} from './page-handler';
 
 const header = () => {
 
@@ -18,6 +18,7 @@ const header = () => {
     //Set listeners
     settingsButton.addEventListener('click', settingsPressed);
     addButton.addEventListener('click', addPressed);
+    title.addEventListener('click', showHomePage);
 
     //Add classes
     title.classList.add('header-title');

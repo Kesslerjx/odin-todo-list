@@ -1,6 +1,6 @@
 
 const home = () => {
-    let main = document.createElement('main');
+    let main = document.createElement('div');
 
     return main;
 };
