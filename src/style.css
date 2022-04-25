@@ -14,11 +14,11 @@ button {
 }
 
 button:hover {
-    box-shadow: inset 0px 0px 10px rgb(0 0 0 / 0.8);
+    box-shadow: inset 0px 0px 10px rgb(0 0 0 / 0.7);
 }
 
 button:active {
-    box-shadow: 0px 0px 10px rgb(0 0 0 / 0.8);
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 0.7);
 }
 
 /* DARK MODE */
@@ -30,6 +30,11 @@ button:active {
 
 .dark-mode img {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(199deg) brightness(102%) contrast(105%);
+}
+
+.dark-mode button:active {
+    box-shadow: 0px 0px 10px rgb(255 255 255 / 0.7);
+
 }
 
 /* DARK MODE */
@@ -65,10 +70,12 @@ header {
 }
 
 .header-title {
-    font-weight: thin;
-    font-size: 2.2rem;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 2.2vw, 2.5rem);
     letter-spacing: 0.7rem;
+    margin-right: -0.7rem;
     user-select: none;
+    align-self: center;
 }
 
 /* HEADER */
