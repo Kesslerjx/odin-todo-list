@@ -14,11 +14,11 @@ button {
 }
 
 button:hover {
-    box-shadow: inset 0px 0px 10px rgb(0 0 0 / 0.7);
+    box-shadow: inset 0px 0px 5px rgb(0 0 0 / 0.5);
 }
 
 button:active {
-    box-shadow: 0px 0px 10px rgb(0 0 0 / 0.7);
+    box-shadow: 0px 0px 5px rgb(0 0 0 / 0.5);
 }
 
 /* DARK MODE */
@@ -67,6 +67,7 @@ header {
     justify-content: space-between;
     padding: 20px;
     position: sticky;
+    box-shadow: 0px 5px 5px rgb(0 0 0 / 0.2);
 }
 
 .header-title {
@@ -137,4 +138,6 @@ footer {
     display: flex;
     justify-content: center;
     padding: 20px;
+    box-shadow: 0px -5px 5px rgb(0 0 0 / 0.2);
+
 }
