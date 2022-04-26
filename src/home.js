@@ -1,5 +1,7 @@
 import { getList } from "./storage-handler";
 import AddIcon from './icons/add.svg';
+import RightArrow from './icons/right_arrow.svg';
+import {scaleElement, showCreateListPage} from './page-handler';
 
 const home = () => {
     let div = document.createElement('div');
@@ -21,6 +23,8 @@ const home = () => {
     listTitle.classList.add('section-title');
     listTitleDiv.classList.add('section-div');
 
+    addListBtn.addEventListener('click', addListPressed);
+
     buildUserList(listDiv);
 
     div.append(dueTitle, listTitleDiv, listDiv);
@@ -34,10 +38,24 @@ function buildUserList(listDiv) {
     for(let x = 0; x < lists.length; x ++) {
         let element = document.createElement('div');
         element.classList.add('list-div');
-        element.textContent = lists[x].name;
+
+        let name = document.createElement('p');
+        name.textContent = lists[x].name;
+
+        let arrow = document.createElement('img');
+        arrow.src = RightArrow;
+        arrow.style.width = '25px';
+
+        element.append(name, arrow);
+
         listDiv.append(element);
     }
 
 };
+
+function addListPressed(event) {
+    scaleElement(event.target);
+    showCreateListPage();
+}
 
 export {home};

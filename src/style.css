@@ -14,11 +14,11 @@ button {
 }
 
 button:hover {
-    box-shadow: inset 0px 0px 5px rgb(0 0 0 / 0.5);
+    box-shadow: 0px 0px 5px rgb(0 0 0 / 0.5);
 }
 
 button:active {
-    box-shadow: 0px 0px 5px rgb(0 0 0 / 0.5);
+    box-shadow: inset 0px 0px 5px rgb(0 0 0 / 0.5);
 }
 
 /* DARK MODE */
@@ -32,7 +32,7 @@ button:active {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(199deg) brightness(102%) contrast(105%);
 }
 
-.dark-mode button:active {
+.dark-mode button:hover {
     box-shadow: 0px 0px 10px rgb(255 255 255 / 0.7);
 
 }
@@ -87,7 +87,7 @@ header {
 
 /* SETTINGS */
 
-.settings, .home {
+.settings, .home, .create-list-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -115,7 +115,7 @@ header {
     height: 20px;
 }
 
-.clear-button, .back-button {
+.clear-button, .back-button, .create-list-button {
     color: white;
     border: none;
     padding: 15px;
@@ -152,13 +152,38 @@ header {
 }
 
 .list-div {
-    border: solid 2px black;
-    border-radius: 5px;
+    border-top: solid 1px black;
+    border-bottom: solid 1px black;
     padding: 10px;
     margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-div p {
+    align-self: center;
 }
 
 /* HOME */
+
+/* CREATE LIST PAGE */
+
+.create-list-page {
+    gap: 10px;
+}
+
+.create-list-page input[type=text] {
+    padding: 10px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: solid;
+}
+
+.create-list-button {
+    background-color: darkgreen;
+}
+
+/* CREATE LIST PAGE */
 
 /* FOOTER */
 
