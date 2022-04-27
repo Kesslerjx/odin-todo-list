@@ -37,6 +37,10 @@ button:active {
 
 }
 
+.dark-mode header {
+    background-color: var(--dark-gray);
+}
+
 /* DARK MODE */
 
 a:visited {
@@ -67,7 +71,10 @@ header {
     justify-content: space-between;
     padding: 20px;
     position: sticky;
+    top: 0;
     box-shadow: 0px 5px 5px rgb(0 0 0 / 0.2);
+    background-color: white;
+    z-index: 1;
 }
 
 .header-title {

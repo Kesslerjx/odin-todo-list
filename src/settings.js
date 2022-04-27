@@ -52,6 +52,8 @@ function clearPressed() {
         //Clear all stored data
         clearData();
 
+        //Update list variable
+
         //Change theme
         setMode();
 

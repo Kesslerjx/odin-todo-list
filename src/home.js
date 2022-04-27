@@ -1,4 +1,4 @@
-import { getList } from "./storage-handler";
+import { userLists } from "./storage-handler";
 import AddIcon from './icons/add.svg';
 import RightArrow from './icons/right_arrow.svg';
 import {scaleElement, showCreateListPage} from './page-handler';
@@ -33,14 +33,13 @@ const home = () => {
 };
 
 function buildUserList(listDiv) {
-    let lists = getList();
 
-    for(let x = 0; x < lists.length; x ++) {
+    for(let x = 0; x < userLists.length; x ++) {
         let element = document.createElement('div');
         element.classList.add('list-div');
 
         let name = document.createElement('p');
-        name.textContent = lists[x].name;
+        name.textContent = userLists[x].name;
 
         let arrow = document.createElement('img');
         arrow.src = RightArrow;

@@ -52,6 +52,11 @@ function setMode() {
     }
 }
 
+function clearNewListInputs() {
+    document.querySelector('#new-list-name').value = '';
+    document.querySelector('#new-list-description').value = '';
+}
+
 //// PUBLIC FUNCTIONS ////
 
 //// PRIVATE FUNCTIONS ////
@@ -69,4 +74,11 @@ function getMain() {
 
 //// PRIVATE FUNCTIONS ////
 
-export {rotateElement, scaleElement, showSettingsPage, showAddItemPage, showHomePage, setMode, showCreateListPage};
+export {rotateElement, 
+    scaleElement, 
+    showSettingsPage, 
+    showAddItemPage, 
+    showHomePage, 
+    setMode, 
+    showCreateListPage,
+    clearNewListInputs};
