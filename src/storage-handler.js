@@ -11,7 +11,7 @@ let userLists = getLists();
 function nameExist(name) {
 
     for(let x=0; x < userLists.length; x++) {
-        if(userLists[x].name === name){
+        if(userLists[x].name.toLowerCase() === name.toLowerCase()){
             return true;
         }
     }
