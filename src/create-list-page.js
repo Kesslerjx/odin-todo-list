@@ -14,11 +14,13 @@ const createListPage = () => {
     listName.type = 'text';
     listName.id = "new-list-name";
     listName.placeholder = 'List name...';
+    listName.classList.add('user-input');
 
     let listDescription = document.createElement('input');
     listDescription.type = 'text';
     listDescription.id = 'new-list-description';
     listDescription.placeholder = 'List description...';
+    listDescription.classList.add('user-input');
 
     let errorMessage = document.createElement('p');
     errorMessage.textContent = ' ';

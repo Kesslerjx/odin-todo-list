@@ -94,7 +94,7 @@ header {
 
 /* SETTINGS */
 
-.settings, .home, .create-list-page {
+.settings, .home, .create-list-page, .create-item-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -175,11 +175,11 @@ header {
 
 /* CREATE LIST PAGE */
 
-.create-list-page {
+.create-list-page, .create-item-page {
     gap: 10px;
 }
 
-.create-list-page input[type=text] {
+.user-input {
     padding: 10px;
     font-size: 1.1rem;
     border-radius: 10px;

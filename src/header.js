@@ -1,6 +1,6 @@
 import SettingsIcon from './icons/settings.svg';
 import AddIcon from './icons/add.svg';
-import {rotateElement, scaleElement, showSettingsPage, showAddItemPage, showHomePage} from './page-handler';
+import {rotateElement, scaleElement, showSettingsPage, showHomePage, showCreateListPage, showCreateItemPage} from './page-handler';
 
 const header = () => {
 
@@ -36,7 +36,7 @@ function settingsPressed(event) {
 
 function addPressed(event) {
     scaleElement(event.target);
-    showAddItemPage();
+    showCreateItemPage();
 }
 
 export {header};

@@ -1,8 +1,8 @@
 import { home } from './home';
 import {settings} from './settings';
-import {addItemPage} from './add-item-page';
 import { getMode } from './storage-handler';
 import {createListPage} from './create-list-page';
+import {createItemPage} from './create-item-page';
 
 //// PUBLIC FUNCTIONS ////
 
@@ -27,11 +27,6 @@ function showSettingsPage() {
     getMain().appendChild(settings());
 }
 
-function showAddItemPage() {
-    clearPage();
-    getMain().appendChild(addItemPage());
-}
-
 function showHomePage() {
     clearPage();
     getMain().appendChild(home());
@@ -40,6 +35,11 @@ function showHomePage() {
 function showCreateListPage() {
     clearPage();
     getMain().appendChild(createListPage());
+}
+
+function showCreateItemPage() {
+    clearPage();
+    getMain().appendChild(createItemPage());
 }
 
 function setMode() {
@@ -85,10 +85,10 @@ function getMain() {
 export {rotateElement, 
     scaleElement, 
     showSettingsPage, 
-    showAddItemPage, 
     showHomePage, 
     setMode, 
     showCreateListPage,
+    showCreateItemPage,
     clearNewListInputs,
     displayCreateListMessage,
     clearCreateListMessage};
