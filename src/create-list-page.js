@@ -1,4 +1,4 @@
-import { showHomePage, clearNewListInputs } from "./page-handler";
+import { showHomePage, clearNewListInputs, displayCreateListMessage, clearCreateListMessage } from "./page-handler";
 import { nameExist, saveNewList } from "./storage-handler";
 import List from "./list";
 
@@ -20,6 +20,11 @@ const createListPage = () => {
     listDescription.id = 'new-list-description';
     listDescription.placeholder = 'List description...';
 
+    let errorMessage = document.createElement('p');
+    errorMessage.textContent = ' ';
+    errorMessage.id = 'create-list-message';
+    errorMessage.style.textAlign = 'center';
+
     let createButton = document.createElement('button');
     createButton.textContent = "Create";
     createButton.classList.add('create-list-button');
@@ -32,7 +37,7 @@ const createListPage = () => {
     backButton.classList.add('back-button');
     backButton.addEventListener('click', showHomePage);
 
-    div.append(sectionTitle, listName, listDescription, createButton, backButton);
+    div.append(sectionTitle, listName, listDescription, createButton, backButton, errorMessage);
 
     return div;
 };
@@ -41,13 +46,16 @@ function validateForm(name, description) {
     //Check for empty inputs
     if(name === '') {
         console.log("Name field is empty");
+        displayCreateListMessage("Name field is empty");
     } else {
 
         //Check for similar name
         if(nameExist(name)) {
             console.log("Name already exist");
+            displayCreateListMessage("Name already exist");
         } else {
             createList(name, description);
+            clearCreateListMessage();
         }
     }
 }

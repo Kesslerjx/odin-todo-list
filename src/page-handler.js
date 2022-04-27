@@ -57,6 +57,14 @@ function clearNewListInputs() {
     document.querySelector('#new-list-description').value = '';
 }
 
+function displayCreateListMessage(message) {
+    document.querySelector('#create-list-message').textContent = message;
+}
+
+function clearCreateListMessage() {
+    document.querySelector('#create-list-message').textContent = '';
+}
+
 //// PUBLIC FUNCTIONS ////
 
 //// PRIVATE FUNCTIONS ////
@@ -81,4 +89,6 @@ export {rotateElement,
     showHomePage, 
     setMode, 
     showCreateListPage,
-    clearNewListInputs};
+    clearNewListInputs,
+    displayCreateListMessage,
+    clearCreateListMessage};
