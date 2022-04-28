@@ -57,12 +57,12 @@ function clearNewListInputs() {
     document.querySelector('#new-list-description').value = '';
 }
 
-function displayCreateListMessage(message) {
-    document.querySelector('#create-list-message').textContent = message;
+function displayMessage(element, message) {
+    element.textContent = message;
 }
 
-function clearCreateListMessage() {
-    document.querySelector('#create-list-message').textContent = '';
+function clearMessage(element) {
+    element.textContent = '';
 }
 
 //// PUBLIC FUNCTIONS ////
@@ -90,5 +90,5 @@ export {rotateElement,
     showCreateListPage,
     showCreateItemPage,
     clearNewListInputs,
-    displayCreateListMessage,
-    clearCreateListMessage};
+    displayMessage,
+    clearMessage};

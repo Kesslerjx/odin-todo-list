@@ -1,5 +1,6 @@
 import { userLists } from "./storage-handler";
-import { showHomePage } from "./page-handler";
+import { showHomePage, displayMessage } from "./page-handler";
+import { compareAsc, compareDesc, parseISO } from 'date-fns'
 
 const createItemPage = () => {
 
@@ -40,7 +41,6 @@ const createItemPage = () => {
     dateText.textContent = 'Date';
     let date = document.createElement('input');
     date.type = 'date'
-    date.placeholder = 'URL...';
     date.classList.add('user-input');
     dateDiv.append(dateText, date);
 
@@ -48,7 +48,7 @@ const createItemPage = () => {
     createButton.textContent = "Create";
     createButton.classList.add('create-list-button');
     createButton.addEventListener('click', function () {
-        //validateForm(listName.value, listDescription.value);
+        validateForm(description.value, date.value, errorMessage);
     })
 
     let backButton = document.createElement('button');
@@ -56,7 +56,12 @@ const createItemPage = () => {
     backButton.classList.add('back-button');
     backButton.addEventListener('click', showHomePage);
 
-    div.append(title, description, selectDiv, note, link, dateDiv, createButton, backButton);
+    let errorMessage = document.createElement('p');
+    errorMessage.textContent = ' ';
+    errorMessage.id = 'create-item-message';
+    errorMessage.style.textAlign = 'center';
+
+    div.append(title, description, selectDiv, note, link, dateDiv, createButton, backButton, errorMessage);
 
     return div;
 
@@ -68,6 +73,38 @@ function buildLists(selectElement) {
         option.text = userLists[x].name;
         selectElement.append(option);
     }
+}
+
+function validateForm(description, date, errorMessage) {
+    if(description === ''){
+        displayMessage(errorMessage, 'Description is required');
+    } else if(date != '' && !checkDate(date)) {
+        displayMessage(errorMessage, 'Date is earlier than today');
+    } else {
+
+    }
+}
+
+//Return true if date is today or later, false if earlier
+function checkDate(date) {
+    let today = new Date();
+    today.setHours(0,0,0,0); //Set time to 0 for comparison
+
+    let answer = compareDesc(today, parseISO(date));
+
+    if(answer >= 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+//Get todays date so the min can be set
+function getTodaysDate() {
+    var today = new Date();
+    var todaySimplified = today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
+
+    return todaySimplified;
 }
 
 export {createItemPage}

@@ -1,4 +1,4 @@
-import { showHomePage, clearNewListInputs, displayCreateListMessage, clearCreateListMessage } from "./page-handler";
+import { showHomePage, clearNewListInputs, displayMessage, clearMessage } from "./page-handler";
 import { nameExist, saveNewList } from "./storage-handler";
 import List from "./list";
 
@@ -31,7 +31,7 @@ const createListPage = () => {
     createButton.textContent = "Create";
     createButton.classList.add('create-list-button');
     createButton.addEventListener('click', function () {
-        validateForm(listName.value, listDescription.value);
+        validateForm(listName.value, listDescription.value, errorMessage);
     })
 
     let backButton = document.createElement('button');
@@ -44,20 +44,20 @@ const createListPage = () => {
     return div;
 };
 
-function validateForm(name, description) {
+function validateForm(name, description, errorMessage) {
     //Check for empty inputs
     if(name === '') {
         console.log("Name field is empty");
-        displayCreateListMessage("Name field is empty");
+        displayMessage(errorMessage, "Name field is empty");
     } else {
 
         //Check for similar name
         if(nameExist(name)) {
             console.log("Name already exist");
-            displayCreateListMessage("Name already exist");
+            displayMessage(errorMessage, "Name already exist");
         } else {
             createList(name, description);
-            clearCreateListMessage();
+            clearMessage(errorMessage);
         }
     }
 }
