@@ -35,7 +35,7 @@ const createListPage = () => {
     })
 
     let backButton = document.createElement('button');
-    backButton.textContent = "Back";
+    backButton.textContent = "Home";
     backButton.classList.add('back-button');
     backButton.addEventListener('click', showHomePage);
 

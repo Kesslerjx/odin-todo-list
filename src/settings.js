@@ -13,7 +13,7 @@ const settings = () => {
     p.textContent  = 'Dark Mode';
     checkbox.type  = 'checkbox';
     clearBtn.textContent = "Clear Data";
-    backBtn.textContent  = 'Back';
+    backBtn.textContent  = 'Home';
 
     checkbox.checked = getMode();
 

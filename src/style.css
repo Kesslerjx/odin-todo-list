@@ -1,6 +1,7 @@
 :root {
     --red-color: #DC0000;
     --dark-gray: #1F1F1F;
+    --lighter-gray: #303030;
 }
 
 body {
@@ -9,7 +10,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-button {
+button, input[type=date]  {
     font-family: inherit;
 }
 
@@ -39,6 +40,10 @@ button:active {
 
 .dark-mode header {
     background-color: var(--dark-gray);
+}
+
+.dark-mode main > div {
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 0.5);
 }
 
 /* DARK MODE */
@@ -125,7 +130,7 @@ header {
 .clear-button, .back-button, .create-list-button {
     color: white;
     border: none;
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
     font-size: 1.5rem;
     letter-spacing: 0.6rem;
@@ -191,6 +196,23 @@ header {
 }
 
 /* CREATE LIST PAGE */
+
+/* CREATE ITEM PAGE */
+
+.select-div {
+    display: flex;
+    gap: 10px;
+}
+
+.select-div p {
+    align-self: center;
+}
+
+.select-div select, .select-div input {
+    flex: 1;
+}
+
+/* CREATE ITEM PAGE */
 
 /* FOOTER */
 
