@@ -19,7 +19,7 @@ const createItemPage = () => {
     let backButton = document.createElement('button');
     let errorMessage = document.createElement('p');
 
-    const buildPage = () => {
+    function buildPage() {
 
         mainDiv.classList.add('create-item-page');
         title.classList.add('section-title');    
@@ -70,7 +70,7 @@ const createItemPage = () => {
         return mainDiv;
     }
 
-    const buildLists = () => {
+    function buildLists() {
         for(let x=0; x< userLists.length; x++){
             let option = document.createElement('option');
             option.text = userLists[x].name;
@@ -78,7 +78,7 @@ const createItemPage = () => {
         }
     }
 
-    const validateForm = () => {
+    function validateForm() {
 
         if(description.value === ''){
             displayMessage('Description is required');
@@ -91,22 +91,22 @@ const createItemPage = () => {
         }
     }
 
-    const displayMessage = (message) => {
+    function displayMessage(message) {
         errorMessage.textContent = message;
     }
 
-    const clearMessage = () => {
+    function clearMessage() {
         errorMessage.textContent = '';
     }
 
-    const clearFields = () => {
+    function clearFields() {
         description.value = '';
         link.value = '';
         note.value = '';
     }
 
     //Return true if date is today or later, false if earlier
-    const checkDate = () =>{
+    function checkDate() {
         let today = new Date();
         today.setHours(0,0,0,0); //Set time to 0 for comparison
 

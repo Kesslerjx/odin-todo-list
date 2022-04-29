@@ -10,7 +10,7 @@ const settings = () => {
     let clearBtn = document.createElement('button');
     let backBtn  = document.createElement('button');
 
-    const buildPage = () => {
+    function buildPage() {
         p.textContent  = 'Dark Mode';
         checkbox.type  = 'checkbox';
         clearBtn.textContent = "Clear Data";
@@ -35,7 +35,7 @@ const settings = () => {
         return mainDiv;
     }
 
-    const checkboxPressed = () => {
+    function checkboxPressed() {
         if(checkbox.checked) {
             //Save mode
             saveMode(true);
@@ -48,7 +48,7 @@ const settings = () => {
         setMode();
     }
 
-    const clearPressed = () => {
+    function clearPressed() {
         if(confirm("Are you sure you want to clear ALL of your data?")) {
             //Clear all stored data
             clearData();
@@ -63,7 +63,7 @@ const settings = () => {
         }
     }
     
-    const backPressed = () => {
+    function backPressed() {
         showHomePage();
     }
 

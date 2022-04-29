@@ -10,7 +10,7 @@ const header = () => {
     let addButton = document.createElement('img');
     let title = document.createElement('p');
 
-    const buildPage = () => {
+    function buildPage() {
         //Add content
         settingsButton.src = SettingsIcon;
         title.textContent = "ToDo";
@@ -30,12 +30,12 @@ const header = () => {
         return header;
     }
 
-    const settingsPressed = (event) => {
+    function settingsPressed(event){
         rotateElement(event.target);
         showSettingsPage();
     }
 
-    const addPressed = (event) => {
+    function addPressed(event) {
         scaleElement(event.target);
         showCreateItemPage();
     }

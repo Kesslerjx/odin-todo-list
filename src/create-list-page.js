@@ -11,7 +11,7 @@ const createListPage = () => {
     let createButton = document.createElement('button');
     let backButton = document.createElement('button');
 
-    const buildPage = () => {
+    function buildPage() {
 
         mainDiv.classList.add('create-list-page');
         sectionTitle.classList.add('section-title');
@@ -41,7 +41,7 @@ const createListPage = () => {
         return mainDiv;
     }
 
-    const validateForm = () => {
+    function validateForm() {
         //Check for empty inputs
         if(listName.value === '') {
             displayMessage("Name field is empty");
@@ -58,7 +58,7 @@ const createListPage = () => {
     }
 
 
-    const createList = () => {
+    function createList() {
         //Create list
         let newList = new List(listName.value, listDescription.value, true);
 
@@ -69,15 +69,15 @@ const createListPage = () => {
         clearInputs();
     }
 
-    const displayMessage = (message) => {
+    function displayMessage(message)  {
         errorMessage.textContent = message;
     }
 
-    const clearMessage = () => {
+    function clearMessage() {
         errorMessage.textContent = '';
     }
     
-    const clearInputs = () => {
+    function clearInputs()  {
         listName.value = '';
         listDescription.value = '';
     }

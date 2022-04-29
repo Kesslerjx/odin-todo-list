@@ -13,7 +13,7 @@ const home = () => {
     let addListBtn = document.createElement('img');
     let listDiv = document.createElement('div');
 
-    const buildPage = () => {
+    function buildPage() {
         //Add content
         dueTitle.textContent = "Due Today";
         listTitle.textContent = "Your Lists";
@@ -40,7 +40,7 @@ const home = () => {
         return div;
     }
 
-    const buildDueList = () => {
+    function buildDueList() {
         let due = getDue();
     
         if(due.length === 0){
@@ -68,7 +68,7 @@ const home = () => {
         }
     }
     
-    const buildUserList = () => {
+    function buildUserList() {
     
         for(let x = 0; x < userLists.length; x ++) {
             let element = document.createElement('div');
@@ -88,7 +88,7 @@ const home = () => {
     
     };
 
-    const addListPressed = (event) => {
+    function addListPressed(event) {
         scaleElement(event.target);
         showCreateListPage();
     }
