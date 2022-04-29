@@ -52,19 +52,6 @@ function setMode() {
     }
 }
 
-function clearNewListInputs() {
-    document.querySelector('#new-list-name').value = '';
-    document.querySelector('#new-list-description').value = '';
-}
-
-function displayMessage(element, message) {
-    element.textContent = message;
-}
-
-function clearMessage(element) {
-    element.textContent = '';
-}
-
 //// PUBLIC FUNCTIONS ////
 
 //// PRIVATE FUNCTIONS ////
@@ -88,7 +75,4 @@ export {rotateElement,
     showHomePage, 
     setMode, 
     showCreateListPage,
-    showCreateItemPage,
-    clearNewListInputs,
-    displayMessage,
-    clearMessage};
+    showCreateItemPage};

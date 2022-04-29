@@ -33,9 +33,7 @@ const createListPage = () => {
         createButton.textContent = "Create";
         backButton.textContent = "Home";
 
-        createButton.addEventListener('click', function () {
-            validateForm();
-        })
+        createButton.addEventListener('click', validateForm);
         backButton.addEventListener('click', showHomePage);
     
         mainDiv.append(sectionTitle, listName, listDescription, createButton, backButton, errorMessage);
