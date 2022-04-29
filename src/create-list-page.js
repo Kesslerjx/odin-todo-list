@@ -1,76 +1,90 @@
-import { showHomePage, clearNewListInputs, displayMessage, clearMessage } from "./page-handler";
+import { showHomePage } from "./page-handler";
 import { nameExist, saveNewList } from "./storage-handler";
 import List from "./list";
 
 const createListPage = () => {
-    let div = document.createElement('div');
-    div.classList.add('create-list-page');
-
+    let mainDiv = document.createElement('div');
     let sectionTitle = document.createElement('p');
-    sectionTitle.textContent = 'Create a List';
-    sectionTitle.classList.add('section-title');
-
     let listName = document.createElement('input');
-    listName.type = 'text';
-    listName.id = "new-list-name";
-    listName.placeholder = 'List name...';
-    listName.classList.add('user-input');
-
     let listDescription = document.createElement('input');
-    listDescription.type = 'text';
-    listDescription.id = 'new-list-description';
-    listDescription.placeholder = 'List description...';
-    listDescription.classList.add('user-input');
-
     let errorMessage = document.createElement('p');
-    errorMessage.textContent = ' ';
-    errorMessage.id = 'create-list-message';
-    errorMessage.style.textAlign = 'center';
-
     let createButton = document.createElement('button');
-    createButton.textContent = "Create";
-    createButton.classList.add('create-list-button');
-    createButton.addEventListener('click', function () {
-        validateForm(listName.value, listDescription.value, errorMessage);
-    })
-
     let backButton = document.createElement('button');
-    backButton.textContent = "Home";
-    backButton.classList.add('back-button');
-    backButton.addEventListener('click', showHomePage);
 
-    div.append(sectionTitle, listName, listDescription, createButton, backButton, errorMessage);
+    const buildPage = () => {
 
-    return div;
-};
+        mainDiv.classList.add('create-list-page');
+        sectionTitle.classList.add('section-title');
+        listName.classList.add('user-input');
+        listDescription.classList.add('user-input');
+        createButton.classList.add('create-list-button');
+        backButton.classList.add('back-button');
+        
+        sectionTitle.textContent = 'Create a List';
+        listName.type = 'text';
+        listName.id = "new-list-name";
+        listName.placeholder = 'List name...';
+        listDescription.type = 'text';
+        listDescription.id = 'new-list-description';
+        listDescription.placeholder = 'List description...';
+        errorMessage.textContent = ' ';
+        errorMessage.id = 'create-list-message';
+        errorMessage.style.textAlign = 'center';
+        createButton.textContent = "Create";
+        backButton.textContent = "Home";
 
-function validateForm(name, description, errorMessage) {
-    //Check for empty inputs
-    if(name === '') {
-        console.log("Name field is empty");
-        displayMessage(errorMessage, "Name field is empty");
-    } else {
+        createButton.addEventListener('click', function () {
+            validateForm();
+        })
+        backButton.addEventListener('click', showHomePage);
+    
+        mainDiv.append(sectionTitle, listName, listDescription, createButton, backButton, errorMessage);
 
-        //Check for similar name
-        if(nameExist(name)) {
-            console.log("Name already exist");
-            displayMessage(errorMessage, "Name already exist");
+        return mainDiv;
+    }
+
+    const validateForm = () => {
+        //Check for empty inputs
+        if(listName.value === '') {
+            displayMessage("Name field is empty");
         } else {
-            createList(name, description);
-            clearMessage(errorMessage);
+    
+            //Check for similar name
+            if(nameExist(listName.value)) {
+                displayMessage("Name already exist");
+            } else {
+                createList();
+                clearMessage();
+            }
         }
     }
-}
 
-function createList(name, description) {
-    //Create list
-    let newList = new List(name, description, true);
 
-    //Save list
-    saveNewList(newList);
+    const createList = () => {
+        //Create list
+        let newList = new List(listName.value, listDescription.value, true);
 
-    //Clear input
-    clearNewListInputs();
-}
+        //Save list
+        saveNewList(newList);
+
+        //Clear input
+        clearInputs();
+    }
+
+    const displayMessage = (message) => {
+        errorMessage.textContent = message;
+    }
+
+    const clearMessage = () => {
+        errorMessage.textContent = '';
+    }
+    
+    const clearInputs = () => {
+        listName.value = '';
+        listDescription.value = '';
+    }
+
+    return buildPage();
+};
 
 export {createListPage};
