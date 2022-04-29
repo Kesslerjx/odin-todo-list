@@ -2,71 +2,72 @@ import {getMode, saveMode, clearData} from './storage-handler';
 import {setMode, showHomePage} from './page-handler';
 
 const settings = () => {
-    let div = document.createElement('div');
 
+    let mainDiv = document.createElement('div');
     let modeDiv  = document.createElement('div');
     let p        = document.createElement('p');
     let checkbox = document.createElement('input');
     let clearBtn = document.createElement('button');
     let backBtn  = document.createElement('button');
 
-    p.textContent  = 'Dark Mode';
-    checkbox.type  = 'checkbox';
-    clearBtn.textContent = "Clear Data";
-    backBtn.textContent  = 'Home';
+    const buildPage = () => {
+        p.textContent  = 'Dark Mode';
+        checkbox.type  = 'checkbox';
+        clearBtn.textContent = "Clear Data";
+        backBtn.textContent  = 'Home';
+    
+        checkbox.checked = getMode();
+    
+        mainDiv.classList.add('settings');
+        modeDiv.classList.add('mode-div');
+        clearBtn.classList.add('clear-button');
+        backBtn.classList.add('back-button');
+        checkbox.classList.add('checkbox');
+    
+        checkbox.addEventListener('change', checkboxPressed);
+        clearBtn.addEventListener('click', clearPressed);
+        backBtn.addEventListener('click', backPressed);
+    
+        modeDiv.append(p, checkbox);
+    
+        mainDiv.append(modeDiv, clearBtn, backBtn);
 
-    checkbox.checked = getMode();
-
-    div.classList.add('settings');
-    modeDiv.classList.add('mode-div');
-    clearBtn.classList.add('clear-button');
-    backBtn.classList.add('back-button');
-    checkbox.classList.add('checkbox');
-
-    checkbox.addEventListener('change', checkboxPressed);
-    clearBtn.addEventListener('click', clearPressed);
-    backBtn.addEventListener('click', backPressed);
-
-    modeDiv.append(p, checkbox);
-
-    div.append(modeDiv, clearBtn, backBtn);
-
-    return div;
-};
-
-function checkboxPressed() {
-    if(this.checked) {
-        //Save mode
-        saveMode(true);
-    } else {
-        //Save mode
-        saveMode(false);
+        return mainDiv;
     }
 
-    //Set mode
-    setMode();
-}
-
-function clearPressed() {
-    if(confirm("Are you sure you want to clear ALL of your data?")) {
-        //Clear all stored data
-        clearData();
-
-        //Update list variable
-
-        //Change theme
+    const checkboxPressed = () => {
+        if(checkbox.checked) {
+            //Save mode
+            saveMode(true);
+        } else {
+            //Save mode
+            saveMode(false);
+        }
+    
+        //Set mode
         setMode();
-
-        //Uncheck the checkbox
-        document.querySelector('.checkbox').checked = getMode();
-    } else {
-        console.log("Clear data was canceled");
     }
-}
 
-function backPressed() {
-    showHomePage();
-}
+    const clearPressed = () => {
+        if(confirm("Are you sure you want to clear ALL of your data?")) {
+            //Clear all stored data
+            clearData();
+    
+            //Change theme
+            setMode();
+    
+            //Uncheck the checkbox
+            checkbox.checked = getMode();
+        } else {
+            console.log("Clear data was canceled");
+        }
+    }
+    
+    const backPressed = () => {
+        showHomePage();
+    }
 
+    return buildPage();
+};
 
 export {settings};
