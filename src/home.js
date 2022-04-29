@@ -4,9 +4,8 @@ import RightArrow from './icons/right_arrow.svg';
 import {scaleElement, showCreateListPage} from './page-handler';
 
 const home = () => {
+
     let div = document.createElement('div');
-    div.classList.add('home');
-    
     let dueTitle  = document.createElement('p');
     let dueListDiv = document.createElement('div');
     let listTitleDiv = document.createElement('div')
@@ -14,32 +13,41 @@ const home = () => {
     let addListBtn = document.createElement('img');
     let listDiv = document.createElement('div');
 
-    dueTitle.textContent = "Due Today";
-    listTitle.textContent = "Your Lists";
-    addListBtn.src = AddIcon;
+    function buildPage() {
+        //Add content
+        dueTitle.textContent = "Due Today";
+        listTitle.textContent = "Your Lists";
+        addListBtn.src = AddIcon;
 
-    listTitleDiv.append(listTitle, addListBtn);
+        //Add classes
+        div.classList.add('home');
+        dueTitle.classList.add('section-title');
+        listTitle.classList.add('section-title');
+        listTitleDiv.classList.add('section-div');
 
-    dueTitle.classList.add('section-title');
-    listTitle.classList.add('section-title');
-    listTitleDiv.classList.add('section-div');
+        //Add listeners
+        addListBtn.addEventListener('click', addListPressed);
 
-    addListBtn.addEventListener('click', addListPressed);
+        //Append elements
+        listTitleDiv.append(listTitle, addListBtn);
+        div.append(dueTitle, dueListDiv, listTitleDiv, listDiv);
 
-    buildUserList(listDiv);
-    buildDueList(dueListDiv);
+        //Build list
+        buildUserList();
+        buildDueList();
 
-    div.append(dueTitle, dueListDiv, listTitleDiv, listDiv);
+        //Return
+        return div;
+    }
 
-    return div;
-};
-
-function buildDueList(dueListDiv) {
-    let due = getDue();
-
-    if(due.length === 0){
-        let div = document.createElement('div');
+    function buildDueList() {
+        let due = getDue();
+    
+        if(due.length === 0){
+            let div = document.createElement('div');
             div.classList.add('list-div');
+
+            console.log(this);
     
             let description = document.createElement('p');
             description.textContent = 'Nothing due today';
@@ -47,44 +55,47 @@ function buildDueList(dueListDiv) {
             div.append(description);
     
             dueListDiv.append(div);
-    } else {
-        for(let x=0; x < due.length; x++) {
-            let div = document.createElement('div');
-            div.classList.add('list-div');
-    
-            let description = document.createElement('p');
-            description.textContent = due[x].description;
-    
-            div.append(description);
-    
-            dueListDiv.append(div);
+        } else {
+            for(let x=0; x < due.length; x++) {
+                let div = document.createElement('div');
+                div.classList.add('list-div');
+        
+                let description = document.createElement('p');
+                description.textContent = due[x].description;
+        
+                div.append(description);
+        
+                dueListDiv.append(div);
+            }
         }
     }
-}
+    
+    function buildUserList() {
+    
+        for(let x = 0; x < userLists.length; x ++) {
+            let element = document.createElement('div');
+            element.classList.add('list-div');
+    
+            let name = document.createElement('p');
+            name.textContent = userLists[x].name;
+    
+            let arrow = document.createElement('img');
+            arrow.src = RightArrow;
+            arrow.style.width = '25px';
+    
+            element.append(name, arrow);
+    
+            listDiv.append(element);
+        }
+    
+    };
 
-function buildUserList(listDiv) {
-
-    for(let x = 0; x < userLists.length; x ++) {
-        let element = document.createElement('div');
-        element.classList.add('list-div');
-
-        let name = document.createElement('p');
-        name.textContent = userLists[x].name;
-
-        let arrow = document.createElement('img');
-        arrow.src = RightArrow;
-        arrow.style.width = '25px';
-
-        element.append(name, arrow);
-
-        listDiv.append(element);
+    function addListPressed(event) {
+        scaleElement(event.target);
+        showCreateListPage();
     }
 
+    return buildPage();
 };
-
-function addListPressed(event) {
-    scaleElement(event.target);
-    showCreateListPage();
-}
 
 export {home};
