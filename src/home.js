@@ -37,16 +37,28 @@ const home = () => {
 function buildDueList(dueListDiv) {
     let due = getDue();
 
-    for(let x=0; x < due.length; x++) {
+    if(due.length === 0){
         let div = document.createElement('div');
-        div.classList.add('list-div');
-
-        let description = document.createElement('p');
-        description.textContent = due[x].description;
-
-        div.append(description);
-
-        dueListDiv.append(div);
+            div.classList.add('list-div');
+    
+            let description = document.createElement('p');
+            description.textContent = 'Nothing due today';
+    
+            div.append(description);
+    
+            dueListDiv.append(div);
+    } else {
+        for(let x=0; x < due.length; x++) {
+            let div = document.createElement('div');
+            div.classList.add('list-div');
+    
+            let description = document.createElement('p');
+            description.textContent = due[x].description;
+    
+            div.append(description);
+    
+            dueListDiv.append(div);
+        }
     }
 }
 
