@@ -10,33 +10,37 @@ const header = () => {
     let addButton = document.createElement('img');
     let title = document.createElement('p');
 
-    //Add content
-    settingsButton.src = SettingsIcon;
-    title.textContent = "ToDo";
-    addButton.src = AddIcon;
+    const buildPage = () => {
+        //Add content
+        settingsButton.src = SettingsIcon;
+        title.textContent = "ToDo";
+        addButton.src = AddIcon;
 
-    //Set listeners
-    settingsButton.addEventListener('click', settingsPressed);
-    addButton.addEventListener('click', addPressed);
-    title.addEventListener('click', showHomePage);
+        //Set listeners
+        settingsButton.addEventListener('click', settingsPressed);
+        addButton.addEventListener('click', addPressed);
+        title.addEventListener('click', showHomePage);
 
-    //Add classes
-    title.classList.add('header-title');
+        //Add classes
+        title.classList.add('header-title');
 
-    //Add elements to header
-    header.append(settingsButton, title, addButton);
+        //Add elements to header
+        header.append(settingsButton, title, addButton);
 
-    return header;
+        return header;
+    }
+
+    const settingsPressed = (event) => {
+        rotateElement(event.target);
+        showSettingsPage();
+    }
+
+    const addPressed = (event) => {
+        scaleElement(event.target);
+        showCreateItemPage();
+    }
+
+    return buildPage();
 };
-
-function settingsPressed(event) {
-    rotateElement(event.target);
-    showSettingsPage();
-}
-
-function addPressed(event) {
-    scaleElement(event.target);
-    showCreateItemPage();
-}
 
 export {header};
