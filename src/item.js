@@ -1,9 +1,10 @@
 
 export default class Item {
-    constructor(description, note='', url='', date='') {
+    constructor(description, list, note='', link='', date='') {
         this.description = description;
+        this.list = list;
         this.note = note;
-        this.url = url;
+        this.link = link;
         this.date = date;
     }
 }

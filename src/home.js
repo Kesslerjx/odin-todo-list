@@ -1,4 +1,4 @@
-import { userLists } from "./storage-handler";
+import { userLists, getDue } from "./storage-handler";
 import AddIcon from './icons/add.svg';
 import RightArrow from './icons/right_arrow.svg';
 import {scaleElement, showCreateListPage} from './page-handler';
@@ -8,6 +8,7 @@ const home = () => {
     div.classList.add('home');
     
     let dueTitle  = document.createElement('p');
+    let dueListDiv = document.createElement('div');
     let listTitleDiv = document.createElement('div')
     let listTitle = document.createElement('p');
     let addListBtn = document.createElement('img');
@@ -26,11 +27,28 @@ const home = () => {
     addListBtn.addEventListener('click', addListPressed);
 
     buildUserList(listDiv);
+    buildDueList(dueListDiv);
 
-    div.append(dueTitle, listTitleDiv, listDiv);
+    div.append(dueTitle, dueListDiv, listTitleDiv, listDiv);
 
     return div;
 };
+
+function buildDueList(dueListDiv) {
+    let due = getDue();
+
+    for(let x=0; x < due.length; x++) {
+        let div = document.createElement('div');
+        div.classList.add('list-div');
+
+        let description = document.createElement('p');
+        description.textContent = due[x].description;
+
+        div.append(description);
+
+        dueListDiv.append(div);
+    }
+}
 
 function buildUserList(listDiv) {
 

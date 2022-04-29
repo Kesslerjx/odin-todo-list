@@ -1,4 +1,6 @@
 import List from './list';
+import Item from './item';
+import { compareAsc, compareDesc, parseISO } from 'date-fns'
 
 const Keys = {
     DarkMode: 'dark',
@@ -55,6 +57,39 @@ function getLists() {
         
 }
 
+function createItem(description, list, note, link, date) {
+    let item = new Item(description, list, note, link, date);
+    addItemToList(list, item);
+}
+
+function addItemToList(list, item) {
+
+    let isSame = (element) => element.name === list;
+    let index = userLists.findIndex(isSame);
+
+    userLists[index].items.push(item);
+
+    saveLists();
+}
+
+function getDue() {
+
+    let due = [];
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    for(let x=0; x < userLists.length; x++) {
+        for(let y=0; y < userLists[x].items.length; y++){
+            if(compareDesc(today, parseISO(userLists[x].items[y].date)) === 0){
+                due.push(userLists[x].items[y]);
+            }
+        }
+    }
+
+    return due;
+
+}
+
 //Returns if dark mode is set or not
 function getMode() {
 
@@ -71,4 +106,4 @@ function saveMode(mode) {
     window.localStorage.setItem(Keys.DarkMode, JSON.stringify(mode));
 }
 
-export {getMode, saveMode, clearData, userLists, nameExist, saveNewList};
+export {getMode, saveMode, clearData, userLists, nameExist, saveNewList, createItem, getDue};

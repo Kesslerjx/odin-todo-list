@@ -1,4 +1,4 @@
-import { userLists } from "./storage-handler";
+import { userLists, createItem } from "./storage-handler";
 import { showHomePage, displayMessage } from "./page-handler";
 import { compareAsc, compareDesc, parseISO } from 'date-fns'
 
@@ -13,6 +13,7 @@ const createItemPage = () => {
 
     let description = document.createElement('input');
     description.type = 'text'
+    description.id = 'new-item-description';
     description.placeholder = 'Description... (required)';
     description.classList.add('user-input');
 
@@ -22,17 +23,20 @@ const createItemPage = () => {
     selectText.textContent = 'List';
     let select = document.createElement('select');
     select.classList.add('user-input');
+    select.id = 'new-item-list';
     buildLists(select);
     selectDiv.append(selectText, select);
 
     let note = document.createElement('input');
     note.type = 'text'
     note.placeholder = 'Note...';
+    note.id = 'new-item-note';
     note.classList.add('user-input');
 
     let link = document.createElement('input');
     link.type = 'text'
     link.placeholder = 'URL...';
+    link.id = 'new-item-link';
     link.classList.add('user-input');
 
     let dateDiv = document.createElement('div');
@@ -41,6 +45,7 @@ const createItemPage = () => {
     dateText.textContent = 'Date';
     let date = document.createElement('input');
     date.type = 'date'
+    date.id = 'new-item-date';
     date.classList.add('user-input');
     dateDiv.append(dateText, date);
 
@@ -48,7 +53,7 @@ const createItemPage = () => {
     createButton.textContent = "Create";
     createButton.classList.add('create-list-button');
     createButton.addEventListener('click', function () {
-        validateForm(description.value, date.value, errorMessage);
+        validateForm(description.value, select.value, note.value, link.value, date.value, errorMessage);
     })
 
     let backButton = document.createElement('button');
@@ -75,14 +80,23 @@ function buildLists(selectElement) {
     }
 }
 
-function validateForm(description, date, errorMessage) {
+function validateForm(description, list, note, link, date, errorMessage) {
+
     if(description === ''){
         displayMessage(errorMessage, 'Description is required');
     } else if(date != '' && !checkDate(date)) {
         displayMessage(errorMessage, 'Date is earlier than today');
     } else {
-
+        createItem(description, list, note, link, date);
+        clearFields();
     }
+}
+
+function clearFields() {
+    document.querySelector('#new-item-description').value = '';
+    document.querySelector('#new-item-link').value = '';
+    document.querySelector('#new-item-note').value = '';
+
 }
 
 //Return true if date is today or later, false if earlier
@@ -97,14 +111,6 @@ function checkDate(date) {
     } else {
         return false;
     }
-}
-
-//Get todays date so the min can be set
-function getTodaysDate() {
-    var today = new Date();
-    var todaySimplified = today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
-
-    return todaySimplified;
 }
 
 export {createItemPage}
