@@ -21,7 +21,7 @@ const createItemPage = () => {
 
     function buildPage() {
 
-        mainDiv.classList.add('create-item-page');
+        mainDiv.classList.add('main-div', 'div-gap');
         title.classList.add('section-title');    
         description.classList.add('user-input');
         selectDiv.classList.add('select-div');

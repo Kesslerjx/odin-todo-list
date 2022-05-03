@@ -18,7 +18,7 @@ const settings = () => {
     
         checkbox.checked = getMode();
     
-        mainDiv.classList.add('settings');
+        mainDiv.classList.add('main-div');
         modeDiv.classList.add('mode-div');
         clearBtn.classList.add('clear-button');
         backBtn.classList.add('back-button');

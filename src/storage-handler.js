@@ -72,6 +72,17 @@ function addItemToList(list, item) {
     saveLists();
 }
 
+function deleteItem(itemToRemove) {
+    //Get list index
+    let isList = (element) => element.name === itemToRemove.list;
+    let listIndex = userLists.findIndex(isList);
+
+    //Remove item from the list
+    userLists[listIndex].items = userLists[listIndex].items.filter(item => item !== itemToRemove);
+
+    saveLists();
+}
+
 function getDue() {
 
     let due = [];
@@ -106,4 +117,4 @@ function saveMode(mode) {
     window.localStorage.setItem(Keys.DarkMode, JSON.stringify(mode));
 }
 
-export {getMode, saveMode, clearData, userLists, nameExist, saveNewList, createItem, getDue};
+export {getMode, saveMode, clearData, userLists, nameExist, saveNewList, createItem, getDue, deleteItem};

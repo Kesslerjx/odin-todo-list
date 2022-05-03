@@ -46,6 +46,18 @@ button:active {
     box-shadow: 0px 0px 10px rgb(0 0 0 / 0.5);
 }
 
+.dark-mode hr {
+    background-color: white;
+}
+
+.dark-mode .dropdown-content {
+    background-color: var(--dark-gray);
+}
+
+.dark-mode .dropdown-content p {
+    color: white;
+}
+
 /* DARK MODE */
 
 a:visited {
@@ -67,6 +79,39 @@ p {
 main {
     display: flex;
     justify-content: center;
+}
+
+.main-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    width: 500px;
+    padding: 50px;
+    margin: 10px;
+    box-shadow: 0px 0px 5px rgb(0 0 0 / 0.2);
+    border-radius: 10px;
+}
+
+.div-gap {
+    gap: 10px;
+}
+
+hr {
+    width: 100%;
+    border: none;
+    height: 1px;
+    background-color: black;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+.section-title-smaller {
+    font-size: 1.6rem;
+    font-weight: 300;
 }
 
 /* HEADER */
@@ -91,6 +136,8 @@ header {
     align-self: center;
 }
 
+
+
 /* HEADER */
 
 #content > div {
@@ -98,17 +145,6 @@ header {
 }
 
 /* SETTINGS */
-
-.settings, .home, .create-list-page, .create-item-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 500px;
-    padding: 50px;
-    margin: 10px;
-    box-shadow: 0px 0px 5px rgb(0 0 0 / 0.2);
-    border-radius: 10px;
-}
 
 .mode-div {
     display: flex;
@@ -149,11 +185,6 @@ header {
 
 /* HOME */
 
-.section-title {
-    font-size: 1.8rem;
-    font-weight: 300;
-}
-
 .section-div {
     display: flex;
     justify-content: space-between;
@@ -180,10 +211,6 @@ header {
 /* HOME */
 
 /* CREATE LIST PAGE */
-
-.create-list-page, .create-item-page {
-    gap: 10px;
-}
 
 .user-input {
     padding: 10px;
@@ -214,6 +241,58 @@ header {
 }
 
 /* CREATE ITEM PAGE */
+
+/* LIST PAGE */
+
+.list-page .section-title-smaller {
+    margin-top: 15px;
+}
+
+.item-div {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: solid 1px black;
+    align-items: center;
+}
+
+.item-div p {
+    margin-right: 10px;
+}
+
+.checkbox-icon {
+    width: 30px;
+    margin-right: 15px;
+    
+}
+
+.dropdown {
+    margin-left: auto;
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgb(0 0 0 / 0.5);
+    border-radius: 5px;
+}
+
+.dropdown-content p {
+    padding: 5px 10px;
+    user-select: none;
+}
+
+.dropdown-content p:hover {
+    transform: scale(1.1);
+}
+
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+
+/* LIST PAGE */
 
 /* FOOTER */
 

@@ -3,6 +3,7 @@ import {settings} from './settings';
 import { getMode } from './storage-handler';
 import {createListPage} from './create-list-page';
 import {createItemPage} from './create-item-page';
+import {listPage} from './list-page';
 
 //// PUBLIC FUNCTIONS ////
 
@@ -42,6 +43,11 @@ function showCreateItemPage() {
     getMain().appendChild(createItemPage());
 }
 
+function showListPage(list) {
+    clearPage();
+    getMain().appendChild(listPage(list));
+}
+
 function setMode() {
     if(getMode() === true) {
         document.querySelector('body').classList.add('dark-mode');
@@ -75,4 +81,5 @@ export {rotateElement,
     showHomePage, 
     setMode, 
     showCreateListPage,
-    showCreateItemPage};
+    showCreateItemPage,
+    showListPage};

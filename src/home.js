@@ -1,7 +1,7 @@
 import { userLists, getDue } from "./storage-handler";
 import AddIcon from './icons/add.svg';
 import RightArrow from './icons/right_arrow.svg';
-import {scaleElement, showCreateListPage} from './page-handler';
+import {scaleElement, showCreateListPage, showListPage} from './page-handler';
 
 const home = () => {
 
@@ -20,7 +20,7 @@ const home = () => {
         addListBtn.src = AddIcon;
 
         //Add classes
-        div.classList.add('home');
+        div.classList.add('main-div');
         dueTitle.classList.add('section-title');
         listTitle.classList.add('section-title');
         listTitleDiv.classList.add('section-div');
@@ -80,6 +80,8 @@ const home = () => {
             let arrow = document.createElement('img');
             arrow.src = RightArrow;
             arrow.style.width = '25px';
+
+            element.addEventListener('click', listPressed);
     
             element.append(name, arrow);
     
@@ -91,6 +93,16 @@ const home = () => {
     function addListPressed(event) {
         scaleElement(event.target);
         showCreateListPage();
+    }
+
+    function listPressed(event) {
+
+        let elementChildren = event.currentTarget.parentElement.children;
+        let array = Array.from(elementChildren);
+        let index = array.indexOf(event.currentTarget);
+        
+        showListPage(userLists[index]);
+
     }
 
     return buildPage();

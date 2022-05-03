@@ -13,7 +13,7 @@ const createListPage = () => {
 
     function buildPage() {
 
-        mainDiv.classList.add('create-list-page');
+        mainDiv.classList.add('main-div', 'div-gap');
         sectionTitle.classList.add('section-title');
         listName.classList.add('user-input');
         listDescription.classList.add('user-input');
