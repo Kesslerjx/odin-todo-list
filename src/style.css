@@ -137,15 +137,15 @@ header {
 }
 
 #settings-button:hover {
-    animation: rotate 1s ease-in-out;
+    animation: rotate 1s ease-out;
 }
 
-#add-item-button:hover {
+#add-item-button:hover, #header-title:hover {
     transition: transform 50ms ease-out;
     transform: scale(1.1);
 }
 
-#settings-button:active, #add-item-button:active {
+#settings-button:active, #add-item-button:active, #header-title:active {
     transition: transform 50ms ease-out;
     transform: scale(0.90);
 }

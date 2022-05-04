@@ -18,6 +18,7 @@ const header = () => {
 
         //IDs
         settingsButton.id = 'settings-button';
+        title.id = 'header-title';
         addButton.id = 'add-item-button';
 
         //Set listeners
