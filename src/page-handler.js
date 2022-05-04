@@ -24,22 +24,6 @@ window.addEventListener('popstate', function() {
 
 //// PUBLIC FUNCTIONS ////
 
-function rotateElement(element) {
-    //Create animation keyframes and timing
-    const spin = {transform: 'rotate(360deg)'};
-    const time = {duration: 1000, iterations: 1};
-
-    //Rotate icon when pressed
-    element.animate(spin, time);
-}
-
-function scaleElement(element) {
-    const scale = {transform: 'scale(0.75)'};
-    const time  = {duration: 100, iterations: 1};
-
-    element.animate(scale, time);
-}
-
 function showSettingsPage() {
 
     let state = State(StateName.Settings, undefined);
@@ -133,8 +117,7 @@ function goBack(state) {
 
 //// PRIVATE FUNCTIONS ////
 
-export {rotateElement, 
-    scaleElement, 
+export { 
     showSettingsPage, 
     showHomePage, 
     setMode, 

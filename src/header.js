@@ -16,6 +16,10 @@ const header = () => {
         title.textContent = "ToDo";
         addButton.src = AddIcon;
 
+        //IDs
+        settingsButton.id = 'settings-button';
+        addButton.id = 'add-item-button';
+
         //Set listeners
         settingsButton.addEventListener('click', settingsPressed);
         addButton.addEventListener('click', addPressed);
@@ -31,12 +35,10 @@ const header = () => {
     }
 
     function settingsPressed(event){
-        rotateElement(event.target);
         showSettingsPage();
     }
 
     function addPressed(event) {
-        scaleElement(event.target);
         showCreateItemPage();
     }
 

@@ -136,7 +136,23 @@ header {
     align-self: center;
 }
 
+#settings-button:hover {
+    animation: rotate 1s ease-in-out;
+}
 
+#add-item-button:hover {
+    transition: transform 50ms ease-out;
+    transform: scale(1.1);
+}
+
+#settings-button:active, #add-item-button:active {
+    transition: transform 50ms ease-out;
+    transform: scale(0.90);
+}
+
+@keyframes rotate {
+    0% {transform: rotate(-360deg)};
+}
 
 /* HEADER */
 

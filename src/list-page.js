@@ -2,8 +2,6 @@ import {itemBuilder} from './item-element-builder';
 
 const listPage = (list) => {
 
-    console.log(typeof list);
-
     let mainDiv = document.createElement('div');
     let title = document.createElement('p');
     let description = document.createElement('p');
