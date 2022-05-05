@@ -1,7 +1,7 @@
 import { userLists, getDue } from "./storage-handler";
 import AddIcon from './icons/add.svg';
 import RightArrow from './icons/right_arrow.svg';
-import {scaleElement, showCreateListPage, showListPage} from './page-handler';
+import { StateName, changePage} from './page-handler';
 
 const home = () => {
 
@@ -90,9 +90,8 @@ const home = () => {
     
     };
 
-    function addListPressed(event) {
-        scaleElement(event.target);
-        showCreateListPage();
+    function addListPressed() {
+        changePage(StateName.CreateList);
     }
 
     function listPressed(event) {
@@ -100,8 +99,8 @@ const home = () => {
         let elementChildren = event.currentTarget.parentElement.children;
         let array = Array.from(elementChildren);
         let index = array.indexOf(event.currentTarget);
-        
-        showListPage(userLists[index]);
+
+        changePage(StateName.ShowList, userLists[index])
 
     }
 

@@ -22,49 +22,47 @@ window.addEventListener('popstate', function() {
     goBack(this.window.history.state);
 })
 
-//// PUBLIC FUNCTIONS ////
+function goBack(state) {
 
-function showSettingsPage() {
+    let parsed = JSON.parse(state);
 
-    let state = State(StateName.Settings, undefined);
-    window.history.pushState(JSON.stringify(state), '');
-
-    clearPage();
-    getMain().appendChild(settings());
+    changePage(parsed.name, parsed.data);
 }
 
-function showHomePage() {
+function changePage(stateName, data = undefined) {
 
-    let state = State(StateName.Home, undefined);
+    let state = State(stateName, data);
     window.history.pushState(JSON.stringify(state), '');
 
-    clearPage();
-    getMain().appendChild(home());
+    clearPage()
+
+    showPage(state);
 }
 
-function showCreateListPage() {
-
-    let state = State(StateName.CreateList, undefined);
-    window.history.pushState(JSON.stringify(state), '');
-
-    clearPage();
-    getMain().appendChild(createListPage());
+function showPage(state) {
+    switch(state.name) {
+        case StateName.Settings:
+            getMain().append(settings());
+            break;
+        case StateName.CreateList:
+            getMain().append(createListPage());
+            break;
+        case StateName.ShowList:
+            //Gets the updates list since the list that's stored is old
+            getMain().append(listPage(userLists.find(element => element.name === state.data.name)));
+            break;
+        case StateName.CreateItem:
+            getMain().append(createItemPage());
+            break;
+        default:
+            getMain().append(home());
+    }
 }
 
-function showCreateItemPage() {
-    let state = State(StateName.CreateItem, undefined);
-    window.history.pushState(JSON.stringify(state), '');
-
-    clearPage();
-    getMain().appendChild(createItemPage());
-}
-
-function showListPage(list) {
-    let state = State(StateName.ShowList, list.name);
-    window.history.pushState(JSON.stringify(state), '');
-
-    clearPage();
-    getMain().appendChild(listPage(list));
+function clearPage() {
+    while(getMain().firstChild) {
+        getMain().removeChild(getMain().firstChild);
+    }
 }
 
 function setMode() {
@@ -77,50 +75,11 @@ function setMode() {
     }
 }
 
-//// PUBLIC FUNCTIONS ////
-
-//// PRIVATE FUNCTIONS ////
-
-function clearPage() {
-    while(getMain().firstChild) {
-        getMain().removeChild(getMain().firstChild);
-    }
-}
-
 //Using this so there isn't a null error since the main element is loaded after the header
 function getMain() {
     return document.querySelector('main');
 }
 
-function goBack(state) {
-
-    let parsed = JSON.parse(state);
-
-    switch(parsed.name) {
-        case StateName.Settings:
-            showSettingsPage();
-            break;
-        case StateName.CreateList:
-            showCreateListPage();
-            break;
-        case StateName.ShowList:
-            //Gets the updates list since the list that's stored is old
-            showListPage(userLists.find(element => element.name === parsed.data));
-            break;
-        case StateName.CreateItem:
-            showCreateItemPage();
-            break;
-        default:
-            showHomePage();
-    }
-}
-
 //// PRIVATE FUNCTIONS ////
 
-export { 
-    showSettingsPage, 
-    showHomePage, 
-    setMode, 
-    showCreateListPage,
-    showCreateItemPage,
-    showListPage};
+export { setMode , changePage, StateName};

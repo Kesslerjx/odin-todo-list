@@ -1,5 +1,4 @@
 import { userLists, createItem } from "./storage-handler";
-import { showHomePage } from "./page-handler";
 import { compareDesc, parseISO } from 'date-fns'
 
 const createItemPage = () => {
@@ -16,7 +15,6 @@ const createItemPage = () => {
     let dateText = document.createElement('p');
     let date = document.createElement('input');
     let createButton = document.createElement('button');
-    let backButton = document.createElement('button');
     let errorMessage = document.createElement('p');
 
     function buildPage() {
@@ -31,13 +29,11 @@ const createItemPage = () => {
         dateDiv.classList.add('select-div');
         date.classList.add('user-input');
         createButton.classList.add('create-list-button');
-        backButton.classList.add('back-button');
 
         title.textContent = 'Add an Item';
         selectText.textContent = 'List';
         dateText.textContent = 'Date';
         createButton.textContent = "Create";
-        backButton.textContent = "Home";
         errorMessage.textContent = ' ';
 
         description.placeholder = 'Description... (required)';
@@ -59,11 +55,10 @@ const createItemPage = () => {
         errorMessage.style.textAlign = 'center';
     
         createButton.addEventListener('click', validateForm);
-        backButton.addEventListener('click', showHomePage);
     
         selectDiv.append(selectText, select);
         dateDiv.append(dateText, date);
-        mainDiv.append(title, description, selectDiv, note, link, dateDiv, createButton, backButton, errorMessage);
+        mainDiv.append(title, description, selectDiv, note, link, dateDiv, createButton, errorMessage);
     
         buildLists();
 

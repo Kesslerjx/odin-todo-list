@@ -1,4 +1,3 @@
-import { showHomePage } from "./page-handler";
 import { nameExist, saveNewList } from "./storage-handler";
 import List from "./list";
 
@@ -9,7 +8,6 @@ const createListPage = () => {
     let listDescription = document.createElement('input');
     let errorMessage = document.createElement('p');
     let createButton = document.createElement('button');
-    let backButton = document.createElement('button');
 
     function buildPage() {
 
@@ -18,7 +16,6 @@ const createListPage = () => {
         listName.classList.add('user-input');
         listDescription.classList.add('user-input');
         createButton.classList.add('create-list-button');
-        backButton.classList.add('back-button');
         
         sectionTitle.textContent = 'Create a List';
         listName.type = 'text';
@@ -31,12 +28,10 @@ const createListPage = () => {
         errorMessage.id = 'create-list-message';
         errorMessage.style.textAlign = 'center';
         createButton.textContent = "Create";
-        backButton.textContent = "Home";
 
         createButton.addEventListener('click', validateForm);
-        backButton.addEventListener('click', showHomePage);
     
-        mainDiv.append(sectionTitle, listName, listDescription, createButton, backButton, errorMessage);
+        mainDiv.append(sectionTitle, listName, listDescription, createButton, errorMessage);
 
         return mainDiv;
     }

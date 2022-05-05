@@ -1,6 +1,6 @@
 import { header } from './header';
 import { footer } from './footer';
-import { setMode, showHomePage } from './page-handler';
+import { setMode, StateName, changePage } from './page-handler';
 
 //Loads the page and what it will initially look like
 const loadPage = () => {
@@ -14,8 +14,8 @@ const loadPage = () => {
 
     //Add header to the top of it, above main
     content.append(header(), main, footer());
-    
-    showHomePage();
+
+    changePage(StateName.Home);
 };
 
 export {loadPage}
