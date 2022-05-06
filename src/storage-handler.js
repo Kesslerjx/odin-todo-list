@@ -57,8 +57,8 @@ function getLists() {
         
 }
 
-function createItem(description, list, note, link, date) {
-    let item = new Item(description, list, note, link, date);
+function createItem(description, list, date) {
+    let item = new Item(description, list, date);
     addItemToList(list, item);
 }
 

@@ -1,21 +1,25 @@
 import CheckboxIcon from './icons/checkbox_outline.svg';
 import MoreIcon from './icons/more_icon.svg';
 import {deleteItem} from './storage-handler';
+import { StateName, changePage } from './page-handler';
+import {format, parseISO} from 'date-fns';
 
 const itemBuilder = (item) => {
 
     let itemDiv = document.createElement('div');
     let checkbox = document.createElement('img');
+    let itemTextDiv = document.createElement('div');
     let itemDesc = document.createElement('p');
+    let itemDate = document.createElement('p');
     let dropDiv = document.createElement('div');
     let moreButton = document.createElement('img');
     let dropDivContent = document.createElement('div');
     let editOption = document.createElement('p');
-    let viewOption = document.createElement('p');
     let deleteOption = document.createElement('p');
 
     function setClasses() {
         itemDiv.classList.add('item-div');
+        itemDate.classList.add('item-due-date');
         checkbox.classList.add('checkbox-icon');
         dropDiv.classList.add('dropdown');
         moreButton.classList.add('dropdown-button');
@@ -24,8 +28,14 @@ const itemBuilder = (item) => {
 
     function setContent() {
         itemDesc.textContent = item.description;
+
+        if(item.date !== '') {
+            itemDate.textContent = format(parseISO(item.date), 'MMMM dd, yyyy');
+        } else {
+            itemDate.textContent = 'No due date';
+        }
+
         editOption.textContent = 'Edit';
-        viewOption.textContent = 'View';
         deleteOption.textContent = 'Delete';
 
         checkbox.src = CheckboxIcon;
@@ -35,14 +45,14 @@ const itemBuilder = (item) => {
     function addEventListeners() {
         checkbox.addEventListener('click', checkboxPressed);
         editOption.addEventListener('click', editPressed);
-        viewOption.addEventListener('click', viewPressed);
         deleteOption.addEventListener('click', deletePressed);
     }
 
     function appendElements() {
-        dropDivContent.append(editOption, viewOption, deleteOption);
+        itemTextDiv.append(itemDesc, itemDate);
+        dropDivContent.append(editOption, deleteOption);
         dropDiv.append(moreButton, dropDivContent);
-        itemDiv.append(checkbox, itemDesc, dropDiv);
+        itemDiv.append(checkbox, itemTextDiv, dropDiv);
     }
 
     function buildElement() {
@@ -63,14 +73,10 @@ const itemBuilder = (item) => {
         console.log('Edit item pressed');
     }
 
-    function viewPressed() {
-        console.log('View item pressed');
-    }
-
     function deletePressed(event) {
         console.log('Delete item pressed');
 
-        if(confirm("Are you sure you want to delete this option?")) {
+        if(confirm("Are you sure you want to delete this item?")) {
             deleteItem(item);
             deleteItemFromDiv(event);
         } else {

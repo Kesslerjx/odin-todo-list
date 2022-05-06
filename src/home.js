@@ -2,6 +2,7 @@ import { userLists, getDue } from "./storage-handler";
 import AddIcon from './icons/add.svg';
 import RightArrow from './icons/right_arrow.svg';
 import { StateName, changePage} from './page-handler';
+import { itemBuilder } from "./item-element-builder";
 
 const home = () => {
 
@@ -12,8 +13,14 @@ const home = () => {
     let listTitle = document.createElement('p');
     let addListBtn = document.createElement('img');
     let listDiv = document.createElement('div');
+    let observer = new MutationObserver(dueListDivChange);
 
     function buildPage() {
+
+        observer.observe(dueListDiv, {
+            childList: true
+        });
+
         //Add content
         dueTitle.textContent = "Due Today";
         listTitle.textContent = "Your Lists";
@@ -55,15 +62,8 @@ const home = () => {
             dueListDiv.append(div);
         } else {
             for(let x=0; x < due.length; x++) {
-                let div = document.createElement('div');
-                div.classList.add('list-div');
         
-                let description = document.createElement('p');
-                description.textContent = due[x].description;
-        
-                div.append(description);
-        
-                dueListDiv.append(div);
+                dueListDiv.append(itemBuilder(due[x]));
             }
         }
     }
@@ -102,6 +102,18 @@ const home = () => {
 
         changePage(StateName.ShowList, userLists[index])
 
+    }
+
+    function dueListDivChange(mutations) {
+        let due = getDue();
+        let record = mutations[0];
+
+        if(record.removedNodes.length === 1 && due.length === 0) {
+            record.target.classList.add('list-div');
+            let p = document.createElement('p');
+            p.textContent = 'Nothing due today';
+            record.target.append(p);
+        }
     }
 
     return buildPage();

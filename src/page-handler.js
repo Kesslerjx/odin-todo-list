@@ -4,6 +4,7 @@ import { getMode, userLists } from './storage-handler';
 import {createListPage} from './create-list-page';
 import {createItemPage} from './create-item-page';
 import {listPage} from './list-page';
+import {itemPage} from './item-page';
 
 const State = (name, data) => {
     return {name, data};
@@ -14,7 +15,8 @@ const StateName = {
     Settings: 'settings',
     ShowList: 'show-list',
     CreateList: 'create-list',
-    CreateItem: 'create-item'
+    CreateItem: 'create-item',
+    ShowItem: 'show-item'
 }
 
 //Handle back press
@@ -36,26 +38,29 @@ function changePage(stateName, data = undefined) {
 
     clearPage()
 
-    showPage(state);
+    getMain().append(getPage(state));
 }
 
-function showPage(state) {
+function getPage(state) {
     switch(state.name) {
         case StateName.Settings:
-            getMain().append(settings());
+            return settings();
             break;
         case StateName.CreateList:
-            getMain().append(createListPage());
+            return createListPage();
             break;
         case StateName.ShowList:
             //Gets the updates list since the list that's stored is old
-            getMain().append(listPage(userLists.find(element => element.name === state.data.name)));
+            return listPage(userLists.find(element => element.name === state.data.name));
             break;
         case StateName.CreateItem:
-            getMain().append(createItemPage());
+            return createItemPage();
+            break;
+        case StateName.ShowItem:
+            return itemPage(state.data);
             break;
         default:
-            getMain().append(home());
+            return home();
     }
 }
 

@@ -9,8 +9,6 @@ const createItemPage = () => {
     let selectDiv = document.createElement('div');
     let selectText = document.createElement('p');
     let select = document.createElement('select');
-    let note = document.createElement('input');
-    let link = document.createElement('input');
     let dateDiv = document.createElement('div');
     let dateText = document.createElement('p');
     let date = document.createElement('input');
@@ -24,8 +22,6 @@ const createItemPage = () => {
         description.classList.add('user-input');
         selectDiv.classList.add('select-div');
         select.classList.add('user-input');
-        note.classList.add('user-input');
-        link.classList.add('user-input');
         dateDiv.classList.add('select-div');
         date.classList.add('user-input');
         createButton.classList.add('create-list-button');
@@ -37,18 +33,12 @@ const createItemPage = () => {
         errorMessage.textContent = ' ';
 
         description.placeholder = 'Description... (required)';
-        note.placeholder = 'Note...';
-        link.placeholder = 'URL...';
 
         description.type = 'text';
-        note.type = 'text';
-        link.type = 'text';
         date.type = 'date';
 
         description.id = 'new-item-description';
         select.id = 'new-item-list';
-        note.id = 'new-item-note';
-        link.id = 'new-item-link';
         date.id = 'new-item-date';
         errorMessage.id = 'create-item-message';
 
@@ -58,7 +48,7 @@ const createItemPage = () => {
     
         selectDiv.append(selectText, select);
         dateDiv.append(dateText, date);
-        mainDiv.append(title, description, selectDiv, note, link, dateDiv, createButton, errorMessage);
+        mainDiv.append(title, description, selectDiv, dateDiv, createButton, errorMessage);
     
         buildLists();
 
@@ -80,7 +70,7 @@ const createItemPage = () => {
         } else if(date.value != '' && !checkDate(date.value)) {
             displayMessage('Date is earlier than today');
         } else {
-            createItem(description.value, select.value, note.value, link.value, date.value);
+            createItem(description.value, select.value, date.value);
             clearFields();
             clearMessage();
         }
@@ -96,8 +86,6 @@ const createItemPage = () => {
 
     function clearFields() {
         description.value = '';
-        link.value = '';
-        note.value = '';
     }
 
     //Return true if date is today or later, false if earlier
