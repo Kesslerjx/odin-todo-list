@@ -1,5 +1,6 @@
 import CheckboxIcon from './icons/checkbox_outline.svg';
 import MoreIcon from './icons/more_icon.svg';
+import CheckboxCheckedIcon from './icons/checkbox_checked.svg';
 import {deleteItem} from './storage-handler';
 import { StateName, changePage } from './page-handler';
 import {format, parseISO} from 'date-fns';
@@ -65,8 +66,15 @@ const itemBuilder = (item) => {
         return itemDiv;
     }
 
-    function checkboxPressed() {
+    function checkboxPressed(event) {
         console.log('Checkbox item pressed');
+
+        //Change image
+        checkbox.src = CheckboxCheckedIcon;
+
+        //Wait a second
+        setTimeout(() => {  deleteItem(item); deleteItemFromDiv(event); }, 2000);
+
     }
 
     function editPressed() {
@@ -86,7 +94,11 @@ const itemBuilder = (item) => {
     }
 
     function deleteItemFromDiv(event) {
-        event.currentTarget.parentElement.parentElement.parentElement.remove();
+        if(event.currentTarget === null) {
+            event.target.parentElement.remove();
+        } else {
+            event.currentTarget.parentElement.parentElement.parentElement.remove();
+        }
     }
 
     return buildElement()
