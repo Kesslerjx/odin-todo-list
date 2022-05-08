@@ -109,6 +109,13 @@ function deleteItem(itemToRemove) {
     saveLists();
 }
 
+function deleteList(listToRemove) {
+
+        userLists = userLists.filter(list => list !== listToRemove);
+
+        saveLists();
+}
+
 function getDue() {
 
     let due = [];
@@ -143,4 +150,4 @@ function saveMode(mode) {
     window.localStorage.setItem(Keys.DarkMode, JSON.stringify(mode));
 }
 
-export {getMode, saveMode, clearData, userLists, nameExist, saveNewList, createItem, getDue, deleteItem, editItem};
+export {getMode, saveMode, clearData, userLists, nameExist, saveNewList, createItem, getDue, deleteItem, editItem, deleteList};

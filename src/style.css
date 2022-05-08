@@ -320,6 +320,10 @@ header {
     display: block;
 }
 
+.dropdown-button {
+    width: 40px;
+}
+
 /* LIST PAGE */
 
 /* FOOTER */
