@@ -71,6 +71,7 @@ const itemBuilder = (item) => {
 
     function editPressed() {
         console.log('Edit item pressed');
+        changePage(StateName.EditItem, item);
     }
 
     function deletePressed(event) {

@@ -62,6 +62,19 @@ function createItem(description, list, date) {
     addItemToList(list, item);
 }
 
+function editItem(oldItem, newDescription, newList, newDate) {
+
+    let newItem = new Item(newDescription, newList, newDate); 
+
+    if(oldItem.list !== newList) {
+        deleteItem(oldItem);
+        addItemToList(newList, newItem);
+    } else {
+        updateItem(oldItem, newItem);
+    }
+}
+
+
 function addItemToList(list, item) {
 
     let isSame = (element) => element.name === list;
@@ -70,6 +83,19 @@ function addItemToList(list, item) {
     userLists[index].items.push(item);
 
     saveLists();
+}
+
+function updateItem(oldItem, newItem) {
+
+    let isList = (element) => element.name === oldItem.list; //Function to determine if it's the list
+    let listIndex = userLists.findIndex(isList); //Gets the index of the list
+    let isItem = (element) => element === oldItem; //Function to determine if items match
+    let itemIndex = userLists[listIndex].items.findIndex(isItem) //Gets the index of the item
+
+    userLists[listIndex].items[itemIndex] = newItem;
+
+    saveLists();
+
 }
 
 function deleteItem(itemToRemove) {
@@ -117,4 +143,4 @@ function saveMode(mode) {
     window.localStorage.setItem(Keys.DarkMode, JSON.stringify(mode));
 }
 
-export {getMode, saveMode, clearData, userLists, nameExist, saveNewList, createItem, getDue, deleteItem};
+export {getMode, saveMode, clearData, userLists, nameExist, saveNewList, createItem, getDue, deleteItem, editItem};

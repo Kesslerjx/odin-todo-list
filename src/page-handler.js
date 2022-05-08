@@ -5,6 +5,7 @@ import {createListPage} from './create-list-page';
 import {createItemPage} from './create-item-page';
 import {listPage} from './list-page';
 import {itemPage} from './item-page';
+import {editItemPage} from './edit-item-page';
 
 const State = (name, data) => {
     return {name, data};
@@ -16,7 +17,8 @@ const StateName = {
     ShowList: 'show-list',
     CreateList: 'create-list',
     CreateItem: 'create-item',
-    ShowItem: 'show-item'
+    ShowItem: 'show-item',
+    EditItem: 'edit-item'
 }
 
 //Handle back press
@@ -58,6 +60,9 @@ function getPage(state) {
             break;
         case StateName.ShowItem:
             return itemPage(state.data);
+            break;
+        case StateName.EditItem:
+            return editItemPage(state.data);
             break;
         default:
             return home();

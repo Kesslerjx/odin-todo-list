@@ -184,7 +184,7 @@ header {
     height: 20px;
 }
 
-.clear-button, .back-button, .create-list-button {
+.clear-button, .back-button, .create-list-button, .edit-button {
     color: white;
     border: none;
     padding: 10px;
@@ -241,6 +241,10 @@ header {
 
 .create-list-button {
     background-color: darkgreen;
+}
+
+.edit-button {
+    background-color: blue;
 }
 
 /* CREATE LIST PAGE */
