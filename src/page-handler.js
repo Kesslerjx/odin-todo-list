@@ -6,6 +6,7 @@ import {createItemPage} from './create-item-page';
 import {listPage} from './list-page';
 import {itemPage} from './item-page';
 import {editItemPage} from './edit-item-page';
+import {editListPage} from './edit-list-page';
 
 const State = (name, data) => {
     return {name, data};
@@ -16,6 +17,7 @@ const StateName = {
     Settings: 'settings',
     ShowList: 'show-list',
     CreateList: 'create-list',
+    EditList: 'edit-list',
     CreateItem: 'create-item',
     ShowItem: 'show-item',
     EditItem: 'edit-item'
@@ -50,6 +52,9 @@ function getPage(state) {
             break;
         case StateName.CreateList:
             return createListPage();
+            break;
+        case StateName.EditList:
+            return editListPage(state.data);
             break;
         case StateName.ShowList:
             //Gets the updates list since the list that's stored is old

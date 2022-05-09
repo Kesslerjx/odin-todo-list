@@ -16,7 +16,7 @@ const editItemPage = (item) => {
     let errorMessage = document.createElement('p');
 
     function setContent() {
-        title.textContent = 'Add an Item';
+        title.textContent = 'Edit Item';
         selectText.textContent = 'List';
         dateText.textContent = 'Date';
         editButton.textContent = "Edit";

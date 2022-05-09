@@ -58,9 +58,11 @@ const listBuilder = (list) => {
         return listDiv;
     }
 
-    function editPressed() {
+    function editPressed(event) {
         console.log('Edit list pressed');
+        event.stopPropagation();
 
+        changePage(StateName.EditList, list);
     }
 
     function deletePressed(event) {

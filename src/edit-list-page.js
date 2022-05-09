@@ -1,13 +1,14 @@
-import { nameExist, saveNewList } from "./storage-handler";
+import { nameExist, saveNewList, editList } from "./storage-handler";
 import List from "./list";
 
-const createListPage = () => {
+const editListPage = (list) => {
+
     let mainDiv = document.createElement('div');
     let sectionTitle = document.createElement('p');
     let listName = document.createElement('input');
     let listDescription = document.createElement('input');
     let errorMessage = document.createElement('p');
-    let createButton = document.createElement('button');
+    let editButton = document.createElement('button');
 
     function buildPage() {
 
@@ -15,51 +16,43 @@ const createListPage = () => {
         sectionTitle.classList.add('section-title');
         listName.classList.add('user-input');
         listDescription.classList.add('user-input');
-        createButton.classList.add('create-list-button');
+        editButton.classList.add('edit-button');
         
-        sectionTitle.textContent = 'Create a List';
+        sectionTitle.textContent = 'Edit List';
         listName.type = 'text';
         listName.id = "new-list-name";
+        listName.value = list.name;
         listName.placeholder = 'List name...';
         listDescription.type = 'text';
         listDescription.id = 'new-list-description';
         listDescription.placeholder = 'List description...';
+        listDescription.value = list.description;
         errorMessage.textContent = ' ';
         errorMessage.id = 'create-list-message';
         errorMessage.style.textAlign = 'center';
-        createButton.textContent = "Create";
+        editButton.textContent = "Edit";
 
-        createButton.addEventListener('click', validateForm);
+        editButton.addEventListener('click', validateForm);
     
-        mainDiv.append(sectionTitle, listName, listDescription, createButton, errorMessage);
+        mainDiv.append(sectionTitle, listName, listDescription, editButton, errorMessage);
 
         return mainDiv;
     }
 
     function validateForm() {
-        //Check for empty inputs
-        if(listName.value === '') {
+
+        if(listName.value === '') { //Check for empty value
             displayMessage("Name field is empty");
         } else
-        if(nameExist(listName.value)) {
-            displayMessage("Name already exist");
+        if(listName.value === list.name && listDescription.value === list.description) { //Check if any changes have been made
+            displayMessage("No changes have been made");
+        } else
+        if(listName.value !== list.name && nameExist(listName.value)) {
+            displayMessage("Name already exist"); 
         } else {
-            createList();
-            clearMessage();
+            editList(list, listName.value, listDescription.value);
+            window.history.back();
         }
-    
-    }
-
-
-    function createList() {
-        //Create list
-        let newList = new List(listName.value, listDescription.value, true);
-
-        //Save list
-        saveNewList(newList);
-
-        //Clear input
-        clearInputs();
     }
 
     function displayMessage(message)  {
@@ -78,4 +71,4 @@ const createListPage = () => {
     return buildPage();
 };
 
-export {createListPage};
+export {editListPage};
